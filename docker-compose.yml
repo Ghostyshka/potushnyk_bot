@@ -1,0 +1,11 @@
+services:
+  potuzhnik-bot:
+    build: .
+    container_name: potuzhnik-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    environment:
+      - TZ=Europe/Kiev
