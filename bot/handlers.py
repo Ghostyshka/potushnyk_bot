@@ -42,6 +42,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
                 await update.message.reply_animation(animation=gif_url)
                 
     # Handle antisemitic comments
-        elif "жид" in message_text:
-            gif_url = random.choice(ANTISEMITIC_GIFS)
+    elif "жид" in message_text:
+        gif_url = random.choice(ANTISEMITIC_GIFS)
+        if gif_url:
             await update.message.reply_animation(animation=gif_url)
