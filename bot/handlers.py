@@ -42,13 +42,3 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             gif_url = random.choice(GIFS)
             if gif_url:  # Skip empty URLs
                 await update.message.reply_animation(animation=gif_url)
-
-    # Handle other messages with sentiment-based responses
-    else:
-        if any(word in message_text for word in ["круто", "супер", "клас", "весело"]):
-            response_text = random.choice(POSITIVE_RESPONSES)
-        elif any(word in message_text for word in ["погано", "сумно", "жахливо"]):
-            response_text = random.choice(NEGATIVE_RESPONSES)
-        else:
-            response_text = random.choice(NEUTRAL_RESPONSES)
-        await update.message.reply_text(response_text)
