@@ -6,7 +6,10 @@ from typing import Optional
 from .responses import (
     POTUZHNO_VARIATIONS,
     TEXT_RESPONSES,
-    GIFS
+    GIFS,
+    POSITIVE_RESPONSES,
+    NEGATIVE_RESPONSES,
+    NEUTRAL_RESPONSES
 )
 from .services import get_currency_rate
 
@@ -17,6 +20,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     message_text = update.message.text.lower()
     config = context.bot_data.get('config', {})
 
+    # Handle currency rate request
     if "потужник курс" in message_text or "потужник, курс" in message_text:
         if api_key := config.get('EXCHANGE_RATE_API_KEY'):
             currency_rate = get_currency_rate(api_key)
@@ -25,8 +29,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             else:
                 await update.message.reply_text("Не вдалося отримати курс валют.")
         else:
-            await update.message.reply_text("Сервіс курсів валют недоступний.")
+            await update.message.reply_text("Сервіс курсів валют недоступний. Check: EXCHANGE_RATE_API_KEY in config.")
 
+    # Handle "потужно" variations
     elif any(variation in message_text for variation in POTUZHNO_VARIATIONS):
         response_type = random.choice(["text", "gif"])
 
@@ -37,3 +42,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
             gif_url = random.choice(GIFS)
             if gif_url:  # Skip empty URLs
                 await update.message.reply_animation(animation=gif_url)
+
+    # Handle other messages with sentiment-based responses
+    else:
+        if any(word in message_text for word in ["круто", "супер", "клас", "весело"]):
+            response_text = random.choice(POSITIVE_RESPONSES)
+        elif any(word in message_text for word in ["погано", "сумно", "жахливо"]):
+            response_text = random.choice(NEGATIVE_RESPONSES)
+        else:
+            response_text = random.choice(NEUTRAL_RESPONSES)
+        await update.message.reply_text(response_text)
