@@ -20,7 +20,7 @@ def main():
     app = ApplicationBuilder().token(config['BOT_TOKEN']).build()
     app.bot_data['config'] = config
 
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    app.add_handler(MessageHandler(filters.ALL, handle_message))
 
     print("Bot has started!")
     app.run_polling()
