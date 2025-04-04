@@ -27,3 +27,7 @@ GIFS = [
 DOGI_RESPONSE_GIFS = [
     "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGdpd2tlYjJic2g3b3djbWxqemtjMmp3ZXVmeXYyMm1jbjY4d2V3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JLvgBQQAU3KNV9szyi/giphy.gif"
     ]
+
+JEWISH_GIFS = [
+     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTQxYzhoNjFvd3FldGEzNTdnY213YXVmd2h6c3dweDFsNWpwemN4cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IDMH9UZgttNjfXl8EW/giphy.gif"
+ ]

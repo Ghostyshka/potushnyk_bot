@@ -8,7 +8,8 @@ from .responses import (
     TEXT_RESPONSES,
     GIFS,
     ANTISEMITIC_GIFS,
-    DOGI_RESPONSE_GIFS
+    DOGI_RESPONSE_GIFS,
+    JEWISH_GIFS
 )
 from .services import get_currency_rate
 
@@ -85,7 +86,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
                 await update.message.reply_animation(animation=gif_url)
                 
     # Handle antisemitic comments
-    elif "жид" in message_text:
+    elif "жид" in message_text :
         gif_url = random.choice(ANTISEMITIC_GIFS)
+        if gif_url:
+            await update.message.reply_animation(animation=gif_url)
+    elif "джевіш" in message_text or "jew" in message_text or "jewish" in message_text:
+        gif_url = random.choice(JEWISH_GIFS)
         if gif_url:
             await update.message.reply_animation(animation=gif_url)
