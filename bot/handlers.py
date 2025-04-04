@@ -18,7 +18,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     username = update.message.from_user.username if update.message.from_user else None
     
-    if username == "@ghostyshka" and (update.message.photo or update.message.video):
+    if username == "ghostyshka" and (update.message.photo or update.message.video):
         gif_url = random.choice(DOGI_RESPONSE_GIFS)
         if gif_url:
             await update.message.reply_animation(animation=gif_url)
@@ -44,7 +44,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     # Handle "потужно" variations
     elif any(variation in message_text for variation in POTUZHNO_VARIATIONS):
         response_type = random.choice(["text", "gif"])
-
         if response_type == "text":
             response_text = random.choice(TEXT_RESPONSES)
             await update.message.reply_text(response_text)
