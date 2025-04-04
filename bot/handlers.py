@@ -7,12 +7,24 @@ from .responses import (
     POTUZHNO_VARIATIONS,
     TEXT_RESPONSES,
     GIFS,
-    ANTISEMITIC_GIFS
+    ANTISEMITIC_GIFS,
+    DOGI_RESPONSE_GIFS
 )
 from .services import get_currency_rate
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if not update.message or not update.message.text:
+    if not update.message:
+        return
+
+    username = update.message.from_user.username if update.message.from_user else None
+    
+    if username == "moon_dogi" and (update.message.photo or update.message.video):
+        gif_url = random.choice(DOGI_RESPONSE_GIFS)
+        if gif_url:
+            await update.message.reply_animation(animation=gif_url)
+        return
+
+    if not update.message.text:
         return
 
     message_text = update.message.text.lower()
