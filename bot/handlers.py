@@ -18,7 +18,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     username = update.message.from_user.username if update.message.from_user else None
     
-    if username == "moon_dogi" and (update.message.photo or update.message.video):
+    if username == "@ghostyshka" and (update.message.photo or update.message.video):
         gif_url = random.choice(DOGI_RESPONSE_GIFS)
         if gif_url:
             await update.message.reply_animation(animation=gif_url)
