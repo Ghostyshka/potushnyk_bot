@@ -18,10 +18,15 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     username = update.message.from_user.username if update.message.from_user else None
     
+    print(f"Username: {username}, Has photo: {bool(update.message.photo)}, Has video: {bool(update.message.video)}, Has text: {bool(update.message.text)}")
+
     if username == "ghostyshka" and (update.message.photo or update.message.video):
         gif_url = random.choice(DOGI_RESPONSE_GIFS)
         if gif_url:
             await update.message.reply_animation(animation=gif_url)
+            print(f"Sent GIF: {gif_url}")
+        else:
+            print("No valid GIF URL found in DOGI_RESPONSE_GIFS")
         return
 
     if not update.message.text:
