@@ -18,9 +18,36 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     username = update.message.from_user.username if update.message.from_user else None
     
-    print(f"Username: {username}, Has photo: {bool(update.message.photo)}, Has video: {bool(update.message.video)}, Has text: {bool(update.message.text)}")
+    print(f"Username: {username}, "
+          f"Has photo: {bool(update.message.photo)}, "
+          f"Has video: {bool(update.message.video)}, "
+          f"Has animation: {bool(update.message.animation)}, "
+          f"Has document: {bool(update.message.document)}, "
+          f"Has audio: {bool(update.message.audio)}, "
+          f"Has voice: {bool(update.message.voice)}, "
+          f"Has video_note: {bool(update.message.video_note)}, "
+          f"Has sticker: {bool(update.message.sticker)}, "
+          f"Has media_group_id: {bool(update.message.media_group_id)}, "
+          f"Has location: {bool(update.message.location)}, "
+          f"Has contact: {bool(update.message.contact)}, "
+          f"Has poll: {bool(update.message.poll)}, "
+          f"Has text: {bool(update.message.text)}")
 
-    if username == "ghostyshka" and (update.message.photo or update.message.video):
+    # Check any media type from user
+    if username == "ghostyshka" and (
+        update.message.photo or
+        update.message.video or
+        update.message.animation or
+        update.message.document or
+        update.message.audio or
+        update.message.voice or
+        update.message.video_note or
+        update.message.sticker or
+        update.message.media_group_id or
+        update.message.location or
+        update.message.contact or
+        update.message.poll
+    ):
         gif_url = random.choice(DOGI_RESPONSE_GIFS)
         if gif_url:
             await update.message.reply_animation(animation=gif_url)
