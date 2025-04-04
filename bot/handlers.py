@@ -34,7 +34,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
           f"Has text: {bool(update.message.text)}")
 
     # Check any media type from user
-    if username == "ghostyshka" and (
+    if username == "moon_dogi" and (
         update.message.photo or
         update.message.video or
         update.message.animation or
